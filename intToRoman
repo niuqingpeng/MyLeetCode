@@ -1,0 +1,30 @@
+/*
+
+Given an integer, convert it to a roman numeral.
+Input is guaranteed to be within the range from 1 to 3999.
+
+*/
+
+string convert(int digit, string one, string five, string ten) {
+    assert(digit>=0 && digit<=9);
+    if (digit==0) return "";
+    if (digit<=3) return string(digit,one[0]);
+    if (digit==4) return one+five;
+    if (digit<=8) return five+string(digit-5,one[0]);
+    if (digit==9) return one+ten;
+}
+
+class Solution {
+public:
+    string intToRoman(int num) {
+        string out;
+        out += string(num/1000,'M'); 
+        num = num % 1000;
+        out += convert(num/100,"C","D","M");
+        num = num % 100;
+        out += convert(num/10,"X","L","C");
+        num = num % 10;
+        out += convert(num,"I","V","X");
+        return out;
+    }
+};
