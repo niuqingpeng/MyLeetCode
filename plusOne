@@ -6,16 +6,16 @@ Given a number represented as an array of digits, plus one to the number.
 
 vector<int> plusOne(vector<int> &digits) {
 	int len = digits.size();
-  	// reverse input vector
-  	for (int i=0; i<len/2; i++) {
-    	swap(digits[i],digits[len-i-1]);
+	// reverse input vector
+	for (int i=0; i<len/2; i++) {
+		swap(digits[i],digits[len-i-1]);
     }
     int carry = 1; // current carry
     int pos = 0; // current position to plus one
     
     while (carry!=0) {
     	if (pos==digits.size()) {
-      		digits.push_back(0); // add extra digit
+    		digits.push_back(0); // add extra digit
       		len++;
     	}
     	digits[pos]+=carry;
