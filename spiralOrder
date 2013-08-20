@@ -8,7 +8,6 @@ For example, given the following matrix:
  [ 7, 8, 9 ]
 ]
 You should return [1,2,3,6,9,8,7,4,5].
-
 */
 
 vector<int> spiralOrder(vector<vector<int> > &matrix) {
