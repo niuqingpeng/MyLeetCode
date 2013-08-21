@@ -14,17 +14,12 @@ public:
         int x = m+n-1;
         m--; n--;
         for (int i=x; i>=0; i--) {
-            if (m<0) {
+            if (n<0) break;
+            else if (m<0 || A[m]<B[n]) {
                 A[i]=B[n--];
-            }
-            else if (n<0) {
-                A[i]=A[m--];
-            }
-            else if (A[m]>B[n]) {
-                A[i]=A[m--];
             }
             else {
-                A[i]=B[n--];
+                A[i]=A[m--];
             }
         }
     }
