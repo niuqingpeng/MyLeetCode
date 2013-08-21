@@ -1,0 +1,39 @@
+/*
+
+There are two sorted arrays A and B of size m and n respectively.
+Find the median of the two sorted arrays.
+The overall run time complexity should be O(log (m+n)).
+
+Note: this is an advance problem of 'find k-th smallest number in the union of two sorted arrays'
+
+*/
+
+int findKth(int A[], int m, int B[], int n, int k) {
+    assert(A && B);
+    if (m==0) return B[k-1];
+    if (n==0) return A[k-1];
+    if (k==1) return min(A[0],B[0]);
+    int ma = m/2;
+    int mb = n/2;
+    if (A[ma]>=B[mb]) {
+        if ((ma+mb+1)>=k)
+            return findKth(A,ma,B,n,k); // drop right of A
+        else
+            return findKth(A,m,B+mb+1,n-(mb+1),k-(mb+1)); // drop left of B
+    }
+    else {
+        if ((ma+mb+1)>=k)
+            return findKth(A,m,B,mb,k); // drop right of B
+        else
+            return findKth(A+ma+1,m-(ma+1),B,n,k-(ma+1)); // drop left of A
+    }
+}
+
+class Solution {
+public:
+    double findMedianSortedArrays(int A[], int m, int B[], int n) {
+        int x=m+n;
+        if (x%2) return findKth(A,m,B,n,x/2+1); // x is a odd number
+        return 0.5*(findKth(A,m,B,n,x/2)+findKth(A,m,B,n,x/2+1));
+    }
+};
