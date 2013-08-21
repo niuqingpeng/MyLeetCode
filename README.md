@@ -1,4 +1,4 @@
-leetcode
+LeetCode
 ========
 
 Solutions for LeetCode problems
