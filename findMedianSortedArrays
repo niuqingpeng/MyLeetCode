@@ -4,7 +4,7 @@ There are two sorted arrays A and B of size m and n respectively.
 Find the median of the two sorted arrays.
 The overall run time complexity should be O(log (m+n)).
 
-Note: this is an advance problem of 'find k-th smallest number in the union of two sorted arrays'
+Note: a variant problem of 'find k-th smallest number in the union of two sorted arrays'
 
 */
 
