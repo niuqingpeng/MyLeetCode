@@ -1,0 +1,22 @@
+/*
+
+Determine whether an integer is a palindrome. 
+Do this without extra space.
+
+*/
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int y = 0;
+        int z = x;
+        bool neg = (x<0)? true : false;
+        if (neg) x = -x;
+        while (x>0) {
+            int digit = x%10;
+            y = y*10 + digit;
+            x = x/10;
+        }
+        return (y==z)? true : false;
+    }
+};
