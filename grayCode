@@ -1,0 +1,42 @@
+/*
+
+The gray code is a binary numeral system where two successive values differ in only one bit.
+
+Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. 
+A gray code sequence must begin with 0.
+
+For example, given n = 2, return [0,1,3,2]. Its gray code sequence is:
+
+00 - 0
+01 - 1
+11 - 3
+10 - 2
+
+Note: 
+Given n=3, the gray code sequence is:
+000
+001
+011
+010
+110
+111
+101
+100
+Thus, the sequence of n=k, say S(k) is S(k-1)+ reverse of S(k-1) with 1 on highest bit
+
+*/
+
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        vector<int> out;
+        out.push_back(0);
+        for (int i=0; i<n; i++) {
+            int x = 1 << i;
+            for (int j=out.size()-1; j>=0; j--) {
+                out.push_back(out[j] + x);
+            }
+        }
+        return out;
+    }
+};
