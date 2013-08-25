@@ -1,0 +1,41 @@
+/*
+
+Given a collection of numbers that might contain duplicates, 
+return all possible unique permutations.
+
+For example,
+[1,1,2] have the following unique permutations:
+[1,1,2], [1,2,1], and [2,1,1].
+
+*/
+
+bool noswap(int k, int i, const vector<int> num){
+        for (int j=k; j<i; j++){
+            if (num[j]==num[i]) return true;
+        }
+        return false;
+    }
+
+void perm(vector<vector<int> > &out, vector<int> &num,int k) {
+    int n = num.size();
+    if (k==n) {
+        out.push_back(num);
+        return;
+    }
+    for (int i=k; i<n; i++) {
+        if (noswap(k,i,num)) continue;
+        swap(num[k],num[i]);
+        perm(out,num,k+1);
+        swap(num[k],num[i]);
+    }
+}
+
+class Solution {
+public:
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        sort(num.begin(), num.end());
+        vector<vector<int> > out;
+        perm(out,num,0);
+        return out;
+    }
+};
