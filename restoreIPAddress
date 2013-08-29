@@ -1,0 +1,39 @@
+/*
+
+Given a string containing only digits, 
+restore it by returning all possible valid IP address combinations.
+
+For example:
+Given "25525511135",
+
+return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+
+*/
+
+class Solution {
+public:
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> out;
+        if(s.size()>12 || s.size()<4) return out;
+        string cur;
+        dfs(out,cur,s,0);
+        return out;
+    }
+    void dfs(vector<string> &out, string cur, string s, int count) {
+        if(count == 3 && isValid(s)) {
+            cur += s;
+            out.push_back(cur);
+            return;
+        } 
+        for(int i=1; i<4 && i<s.size(); i++){
+            string subs = s.substr(0,i);
+            if(isValid(subs)) dfs(out,cur+subs+".",s.substr(i),count+1);
+        }
+  
+    }
+    bool isValid(string s){
+        if (s.size()>1 && s[0]=='0') return (s=="0");
+        int num = atoi(s.c_str());
+        return num>=0 && num<=255;
+    }
+};
